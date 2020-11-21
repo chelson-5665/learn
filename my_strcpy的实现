@@ -1,0 +1,55 @@
+//设计思想：字符串复制不需要返回类型，先选择void作为返回类型。参数可知，需要两个字符指针char接收
+//void my_strcpy(char dest, char* src)
+//将接收字符串首地址的指针向后移动就可以得到字符串中的各个字符，目标地址的指针与字符串指针同步移动被赋值就完成了字符串复制的功能。
+
+#include <stdio.h>
+#include <assert.h>
+
+void my_strcpy(char* dest,const char* src)
+{
+	assert(dest != NULL);	//断言
+	assert(src != NULL);
+	while (*src)
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = *src;
+}
+
+int main()
+{
+	const char* p = "abcdef";
+	char arr[10];
+	my_strcpy(arr,p);
+	printf("%s\n",arr);
+	return 0;
+}
+//通过查阅资料发现：strcpy的返回类型不为void，为char* 返回了字符串的首地址，所以要在指针开始移动之前保存初始的指向地址，用char* ret = src保存，返回ret；
+//注：ret的作用为作为其他函数调用时的参数
+//修改code如下
+
+#include <stdio.h>
+#include <assert.h>
+
+char* my_strcpy(char* dest,const char* src)
+{
+	char* ret = *src;
+	assert(dest != NULL);	//断言
+	assert(src != NULL);
+	while (*dest++ = *src++)
+	{
+		;
+	}
+	return ret;
+}
+
+int main()
+{
+	const char* p = "abcdef";
+	char arr[10];
+	my_strcpy(arr,p);
+	printf("%s\n",arr);
+	return 0;
+}
