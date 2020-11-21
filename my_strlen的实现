@@ -1,0 +1,29 @@
+//设计思想：返回类型为整型int，参数为一个字符型指针变量char*
+//int my_strlen(char* src)
+//用字符指针接收字符首字母的地址，当指针指向’\0’时，计数器count停止++；
+
+#include <stdio.h>
+#include <assert.h>
+
+int my_strlen(const char *src)
+{
+	assert(src!=NULL);	//断言
+	int count = 0;
+	while (*src++)
+	{
+		count++;
+	}
+	return count;
+}
+
+int main()
+{
+	const char *p = "abcdef";
+	printf("%d\n",my_strlen(p));
+	return 0;
+}
+
+
+//assert的作用：防止传输的指针为NULL，引起错误，方便调试；且在发行版本中可以优化掉。
+//使用时需要引头文件<assert.h>
+//const的作用：保护指针的指向的内容不会发生变化。
